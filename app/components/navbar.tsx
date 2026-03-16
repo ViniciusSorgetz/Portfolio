@@ -12,18 +12,18 @@ import Link from "next/link";
 
 const navbar = tv({
   slots: {
-    base: "py-3 px-10 text-sm font-figree border-b-2 border-x-2 flex items-center justify-center z-5",
+    base: "py-3 px-2 md:px:10 text-sm font-figree flex items-center justify-center z-5",
     left: "flex items-center gap-x-15 w-full h-ful",
-    pages: "flex gap-x-10",
+    pages: " gap-x-10 hidden md:flex",
     menu: "flex gap-x-5 items-center",
   },
   variants: {
     theme: {
       light: {
-        base: "bg-white text-black/75 border-black/15",
+        base: "bg-white text-black/75",
       },
       dark: {
-        base: "bg-[#17181D] text-white/75 border-white/15",
+        base: "bg-zinc-950 text-white/75",
       },
     },
   },
