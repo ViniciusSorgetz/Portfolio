@@ -10,12 +10,22 @@ import linkedin from "@/public/linkedin.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-const nav = tv({
-  base: "py-3 px-16 text-sm font-figree  border-b-2 flex items-center justify-center transition-colors duration-150",
+const navbar = tv({
+  slots: {
+    base: "py-3 text-sm font-figree w-lvw border-b-2 flex items-center justify-center fixed z-5",
+    container: "flex w-341.5 px-16",
+    left: "flex items-center gap-x-15 w-full h-ful",
+    pages: "flex gap-x-10",
+    menu: "flex gap-x-5 items-center",
+  },
   variants: {
     theme: {
-      light: "bg-white text-black/75 border-black/15",
-      dark: "bg-[#17181D] text-white/75 border-white/15",
+      light: {
+        base: "bg-white text-black/75 border-black/15",
+      },
+      dark: {
+        base: "bg-[#17181D] text-white/75 border-white/15",
+      },
     },
   },
 });
@@ -26,44 +36,57 @@ const navItem = tv({
     selected: {
       true: "font-bold text-galaxy",
     },
+    theme: {
+      dark: "",
+      light: "invert-75",
+    },
   },
 });
 
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { base, container, left, pages, menu } = navbar({ theme });
 
   function switchTheme() {
     setTheme(theme == "dark" ? "light" : "dark");
   }
 
   return (
-    <nav className={nav({ theme })}>
-      <div className=" flex w-[1280]">
-        <div className=" flex items-center gap-x-15 w-full h-full">
+    <nav className={base()}>
+      <div className={container()}>
+        <div className={left()}>
           <Image src={logo} alt="logo"></Image>
-          <div className="flex gap-x-10">
+          <div className={pages()}>
             <span className={navItem()}>Apresentação</span>
             <span className={navItem({ selected: true })}>Portfólio</span>
             <span className={navItem()}>Contato</span>
           </div>
         </div>
-        <div className="flex gap-x-8">
-          <Image
-            src={theme == "dark" ? dark : light}
-            alt="theme-icon"
-            onClick={switchTheme}
-            className={navItem()}
-          ></Image>
+        <div className={menu()}>
+          <span className={navItem({ className: "text-lg" })}>EN</span>
+          <div className="w-5 h-5 relative">
+            <Image
+              src={theme == "dark" ? dark : light}
+              alt="theme-icon"
+              onClick={switchTheme}
+              fill
+              className={navItem({ theme, className: "object-cover" })}
+            />
+          </div>
+
           <Link
             href="https://www.linkedin.com/in/vinicius-sorgetz"
             target="_blank"
-            className="flex justify-center "
+            className="flex justify-center w-fit"
           >
-            <Image
-              src={linkedin}
-              alt="theme-icon"
-              className={`${navItem()} scale-125`}
-            ></Image>
+            <div className="w-5 h-5 relative">
+              <Image
+                src={linkedin}
+                alt="LinkedIn"
+                fill
+                className={navItem({ theme, className: "object-cover" })}
+              />
+            </div>
           </Link>
         </div>
       </div>
