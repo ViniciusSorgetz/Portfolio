@@ -1,9 +1,16 @@
 import { tv } from "tailwind-variants";
 
 const sidebar = tv({
-  base: " h-[calc(100vh-5rem)] border-x-2 border-white/15 p-5",
+  base: "h-screen w-50 border-x-2 border-white/15 p-5 px-10",
 });
 
-export default function Sidebar() {
-  return <aside className={sidebar()}>helloo</aside>;
+export default function Sidebar({ className }: { className: string }) {
+  return (
+    <aside className={sidebar({ className })}>
+      <p>hello</p>
+      <p>hello</p>
+      <p>hello</p>
+      <p>hello</p>
+    </aside>
+  );
 }

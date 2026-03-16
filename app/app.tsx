@@ -6,14 +6,10 @@ import Sidebar from "./components/sidebar";
 
 const app = tv({
   slots: {
-    base: "w-screen min-h-screen transition-colors duration-150 text-white/75",
-    wrapper: "w-341.5 mx-auto px-16",
-    layout: "flex gap-6",
-    sidebarLeft:
-      "sticky top-17 h-[calc(100vh-5rem)] overflow-y-auto w-64 shrink-0",
-    content: "flex-1 min-w-0",
-    sidebarRight:
-      "sticky top-17 h-[calc(100vh-5rem)] overflow-y-auto w-64 shrink-0",
+    base: " flex justify-center min-h-screen transition-colors duration-150 text-white/75",
+    layout: "fixed w-[95%] max-w-341.5",
+    content: "w-100 mt-25",
+    sidebars: "flex justify-between",
   },
   variants: {
     theme: {
@@ -25,85 +21,80 @@ const app = tv({
 
 export default function App() {
   const { theme } = useContext(ThemeContext);
-  const { base, wrapper, layout, sidebarLeft, content, sidebarRight } = app({
+  const { base, content, layout, sidebars } = app({
     theme,
   });
 
   return (
     <div id="app" className={base()}>
-      <Navbar />
-      <div className={wrapper()}>
-        <div className={layout()}>
-          <aside className={sidebarLeft()}>
-            <Sidebar />
-          </aside>
-
-          <main className={content()}>
-            <p>hello</p>
-            <p>hello</p> {/* ... muitos hello ... */}
-            <p>hello</p> {/* ... muitos hello ... */}
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-            <p>hello</p>
-          </main>
-
-          <aside className={sidebarRight()}>
-            <Sidebar />
-          </aside>
+      <div className={layout()}>
+        <Navbar />
+        <div className={sidebars()}>
+          <Sidebar className="left-0" />
+          <Sidebar className="right-0" />
         </div>
       </div>
+      <main className={content()}>
+        <h1>Title</h1>
+        <p>hello</p>
+        <p>hello</p> {/* ... muitos hello ... */}
+        <p>hello</p> {/* ... muitos hello ... */}
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+        <p>hello</p>
+      </main>
     </div>
   );
 }

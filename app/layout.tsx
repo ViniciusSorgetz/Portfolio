@@ -10,7 +10,7 @@ export default function RootLayout() {
       <head>
         <title>Vinícius Sorgetz - Portfólio</title>
       </head>
-      <body className="overflow-x-hidden">
+      <body>
         <ThemeProvider>
           <App></App>
         </ThemeProvider>

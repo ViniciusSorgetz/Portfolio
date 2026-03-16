@@ -12,8 +12,7 @@ import Link from "next/link";
 
 const navbar = tv({
   slots: {
-    base: "py-3 text-sm font-figree w-lvw border-b-2 flex items-center justify-center fixed z-5",
-    container: "flex w-341.5 px-16",
+    base: "py-3 px-10 text-sm font-figree border-b-2 border-x-2 flex items-center justify-center z-5",
     left: "flex items-center gap-x-15 w-full h-ful",
     pages: "flex gap-x-10",
     menu: "flex gap-x-5 items-center",
@@ -45,7 +44,7 @@ const navItem = tv({
 
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { base, container, left, pages, menu } = navbar({ theme });
+  const { base, left, pages, menu } = navbar({ theme });
 
   function switchTheme() {
     setTheme(theme == "dark" ? "light" : "dark");
@@ -53,42 +52,40 @@ export default function Navbar() {
 
   return (
     <nav className={base()}>
-      <div className={container()}>
-        <div className={left()}>
-          <Image src={logo} alt="logo"></Image>
-          <div className={pages()}>
-            <span className={navItem()}>Apresentação</span>
-            <span className={navItem({ selected: true })}>Portfólio</span>
-            <span className={navItem()}>Contato</span>
-          </div>
+      <div className={left()}>
+        <Image src={logo} alt="logo"></Image>
+        <div className={pages()}>
+          <span className={navItem()}>Apresentação</span>
+          <span className={navItem({ selected: true })}>Portfólio</span>
+          <span className={navItem()}>Contato</span>
         </div>
-        <div className={menu()}>
-          <span className={navItem({ className: "text-lg" })}>EN</span>
+      </div>
+      <div className={menu()}>
+        <span className={navItem({ className: "text-lg" })}>EN</span>
+        <div className="w-5 h-5 relative">
+          <Image
+            src={theme == "dark" ? dark : light}
+            alt="theme-icon"
+            onClick={switchTheme}
+            fill
+            className={navItem({ theme, className: "object-cover" })}
+          />
+        </div>
+
+        <Link
+          href="https://www.linkedin.com/in/vinicius-sorgetz"
+          target="_blank"
+          className="flex justify-center w-fit"
+        >
           <div className="w-5 h-5 relative">
             <Image
-              src={theme == "dark" ? dark : light}
-              alt="theme-icon"
-              onClick={switchTheme}
+              src={linkedin}
+              alt="LinkedIn"
               fill
               className={navItem({ theme, className: "object-cover" })}
             />
           </div>
-
-          <Link
-            href="https://www.linkedin.com/in/vinicius-sorgetz"
-            target="_blank"
-            className="flex justify-center w-fit"
-          >
-            <div className="w-5 h-5 relative">
-              <Image
-                src={linkedin}
-                alt="LinkedIn"
-                fill
-                className={navItem({ theme, className: "object-cover" })}
-              />
-            </div>
-          </Link>
-        </div>
+        </Link>
       </div>
     </nav>
   );
