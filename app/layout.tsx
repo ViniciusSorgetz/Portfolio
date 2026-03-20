@@ -3,6 +3,7 @@
 import "./globals.css";
 import { ThemeProvider } from "./contexts/theme";
 import App from "./app";
+import { LanguageProvider } from "./contexts/language";
 
 export default function RootLayout() {
   return (
@@ -12,7 +13,9 @@ export default function RootLayout() {
       </head>
       <body>
         <ThemeProvider>
-          <App></App>
+          <LanguageProvider>
+            <App></App>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

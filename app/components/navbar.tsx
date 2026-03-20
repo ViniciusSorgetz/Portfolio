@@ -9,10 +9,11 @@ import light from "@/public/light.svg";
 import linkedin from "@/public/linkedin.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { LanguageContext } from "../contexts/language";
 
 const navbar = tv({
   slots: {
-    base: "py-3 px-2 md:px:10 text-sm font-figree flex items-center justify-center z-5",
+    base: "py-3 md:px:10 text-sm font-figree flex items-center justify-center z-5 transition-colors",
     left: "flex items-center gap-x-15 w-full h-ful",
     pages: " gap-x-10 hidden md:flex",
     menu: "flex gap-x-5 items-center",
@@ -32,9 +33,7 @@ const navbar = tv({
 const navItem = tv({
   base: "hover:cursor-pointer transition-transform duration-150 active:scale-80",
   variants: {
-    selected: {
-      true: "font-bold text-galaxy",
-    },
+    selected: { true: "font-bold text-galaxy" },
     theme: {
       dark: "",
       light: "invert-75",
@@ -44,6 +43,7 @@ const navItem = tv({
 
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
+  const { text, switchLanguage } = useContext(LanguageContext);
   const { base, left, pages, menu } = navbar({ theme });
 
   function switchTheme() {
@@ -55,13 +55,20 @@ export default function Navbar() {
       <div className={left()}>
         <Image src={logo} alt="logo"></Image>
         <div className={pages()}>
-          <span className={navItem()}>Apresentação</span>
-          <span className={navItem({ selected: true })}>Portfólio</span>
-          <span className={navItem()}>Contato</span>
+          {text.navbar.pages.map((page, index) => (
+            <span key={index} className={navItem({ selected: index === 0 })}>
+              {page}
+            </span>
+          ))}
         </div>
       </div>
       <div className={menu()}>
-        <span className={navItem({ className: "text-lg" })}>EN</span>
+        <span
+          className={navItem({ className: "text-lg" })}
+          onClick={switchLanguage}
+        >
+          {text.navbar.language.toUpperCase()}
+        </span>
         <div className="w-5 h-5 relative">
           <Image
             src={theme == "dark" ? dark : light}

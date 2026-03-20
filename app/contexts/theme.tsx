@@ -1,8 +1,7 @@
 "use client";
 
 import React, { createContext, useState } from "react";
-
-type themeType = "dark" | "light";
+import { themeType } from "../utils/types/theme";
 
 const defaultTheme: themeType = "dark";
 
