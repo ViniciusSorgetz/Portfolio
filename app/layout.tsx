@@ -2,10 +2,15 @@
 
 import "./globals.css";
 import { ThemeProvider } from "./contexts/theme";
-import App from "./app";
 import { LanguageProvider } from "./contexts/language";
+import Navbar from "./components/navbar";
+import { Container } from "./components/container";
 
-export default function RootLayout() {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <head>
@@ -14,7 +19,10 @@ export default function RootLayout() {
       <body>
         <ThemeProvider>
           <LanguageProvider>
-            <App></App>
+            <Container>
+              <Navbar />
+              {children}
+            </Container>
           </LanguageProvider>
         </ThemeProvider>
       </body>

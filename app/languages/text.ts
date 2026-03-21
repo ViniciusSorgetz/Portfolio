@@ -1,17 +1,30 @@
+export interface SidebarItem {
+  label: string;
+  path: string;
+}
+
+interface SidebarGroup {
+  title: string;
+  items: SidebarItem[];
+}
+
 export interface Text {
   navbar: {
-    pages: [string, string, string];
+    pages: string[];
     language: string;
   };
   aboutMe: {
     aboutMe: {
       title: string;
-      paragraphs: [string];
+      paragraphs: string[];
     };
     trajectory: {
       title: string;
-      paragraphs: [string, string];
+      paragraphs: string[];
       code: string;
     };
+  };
+  sidebarLeft: {
+    groups: SidebarGroup[];
   };
 }
