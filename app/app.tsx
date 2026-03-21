@@ -42,26 +42,17 @@ export default function App() {
         <Navbar />
         <div className={sidebars()}>
           <Sidebar position="left">
-            <SidebarGroup>
-              <SidebarTitle>Getting started</SidebarTitle>
-              <SidebarItem>Sobre mim</SidebarItem>
-              <SidebarItem>Tecnologias</SidebarItem>
-              <SidebarItem>Habilidades</SidebarItem>
-            </SidebarGroup>
-            <SidebarLine />
-            <SidebarGroup>
-              <SidebarTitle>Getting started</SidebarTitle>
-              <SidebarItem>Sobre mim</SidebarItem>
-              <SidebarItem>Tecnologias</SidebarItem>
-              <SidebarItem>Habilidades</SidebarItem>
-            </SidebarGroup>
-            <SidebarLine />
-            <SidebarGroup>
-              <SidebarTitle>Getting started</SidebarTitle>
-              <SidebarItem>Sobre mim</SidebarItem>
-              <SidebarItem>Tecnologias</SidebarItem>
-              <SidebarItem>Habilidades</SidebarItem>
-            </SidebarGroup>
+            {text.sidebarLeft.groups.map((group, index) => (
+              <SidebarGroup key={index}>
+                <SidebarTitle>{group.title}</SidebarTitle>
+                {group.items.map((item, itemIndex) => (
+                  <SidebarItem key={itemIndex} item={item}>
+                    {item}
+                  </SidebarItem>
+                ))}
+                {index + 1 < text.sidebarLeft.groups.length && <SidebarLine />}
+              </SidebarGroup>
+            ))}
           </Sidebar>
           <Sidebar position="right">h</Sidebar>
         </div>

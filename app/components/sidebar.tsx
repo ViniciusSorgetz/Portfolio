@@ -1,7 +1,8 @@
 import { tv } from "tailwind-variants";
-import { themeType } from "../utils/types/theme";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/theme";
+import slugify from "slugify";
+import Link from "next/link";
 
 const sidebar = tv({
   base: `
@@ -59,9 +60,20 @@ export function SidebarTitle({ children }: { children?: React.ReactNode }) {
   return <div className={sidebarTitle({ theme })}>{children}</div>;
 }
 
-export function SidebarItem({ children }: { children?: React.ReactNode }) {
+export function SidebarItem({
+  children,
+  item,
+}: {
+  children?: React.ReactNode;
+  item: string;
+}) {
   const { theme } = useContext(ThemeContext);
-  return <div className={sidebarItem({ theme })}>{children}</div>;
+
+  return (
+    <Link href={`/${slugify(item)}`}>
+      <div className={sidebarItem({ theme })}>{children}</div>
+    </Link>
+  );
 }
 
 export function SidebarGroup({ children }: { children?: React.ReactNode }) {

@@ -18,4 +18,20 @@ export const pt: Text = {
       code: "",
     },
   },
+  sidebarLeft: {
+    groups: [
+      {
+        title: "Começando",
+        items: ["Sobre mim", "Tecnologias", "Habilidades"],
+      },
+      {
+        title: "Projetos",
+        items: ["Lockers_System", "E-Commerce", "clone-tabnews", "Stocotoon"],
+      },
+      {
+        title: "Currículo",
+        items: ["Formação", "Experiência", "Certificados"],
+      },
+    ],
+  },
 };

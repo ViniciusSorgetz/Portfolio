@@ -14,7 +14,7 @@ export default function RootLayout() {
       <body>
         <ThemeProvider>
           <LanguageProvider>
-            <App></App>
+            <App />
           </LanguageProvider>
         </ThemeProvider>
       </body>

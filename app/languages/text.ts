@@ -14,4 +14,11 @@ export interface Text {
       code: string;
     };
   };
+  sidebarLeft: {
+    groups: [
+      { title: string; items: [string, string, string] },
+      { title: string; items: [string, string, string, string] },
+      { title: string; items: [string, string, string] },
+    ];
+  };
 }
