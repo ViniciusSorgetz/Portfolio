@@ -1,4 +1,21 @@
+import slugify from "slugify";
 import { Text } from "./text";
+import { en } from "./en";
+
+const sidebarLabels = [
+  {
+    title: "Começando",
+    labels: ["Sobre mim", "Tecnologias", "Habilidades"],
+  },
+  {
+    title: "Projetos",
+    labels: ["Lockers System", "E-Commerce", "Clone Tabnews", "Stocotoon"],
+  },
+  {
+    title: "Currículo",
+    labels: ["Formação", "Experiência", "Certificados"],
+  },
+];
 
 export const pt: Text = {
   navbar: {
@@ -19,19 +36,14 @@ export const pt: Text = {
     },
   },
   sidebarLeft: {
-    groups: [
-      {
-        title: "Começando",
-        items: ["Sobre mim", "Tecnologias", "Habilidades"],
-      },
-      {
-        title: "Projetos",
-        items: ["Lockers_System", "E-Commerce", "clone-tabnews", "Stocotoon"],
-      },
-      {
-        title: "Currículo",
-        items: ["Formação", "Experiência", "Certificados"],
-      },
-    ],
+    groups: sidebarLabels.map((group, index) => ({
+      title: group.title,
+      items: group.labels.map((label, itemIndex) => ({
+        label,
+        path: slugify(en.sidebarLeft.groups[index].items[itemIndex].label, {
+          lower: true,
+        }),
+      })),
+    })),
   },
 };

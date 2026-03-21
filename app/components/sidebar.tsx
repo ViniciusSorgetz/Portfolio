@@ -1,12 +1,12 @@
 import { tv } from "tailwind-variants";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/theme";
-import slugify from "slugify";
 import Link from "next/link";
+import { SidebarItem as SidebarItemType } from "../languages";
 
 const sidebar = tv({
   base: `
-      h-screen w-60 pr-10 overflow-y-auto
+      h-screen w-60 pr-10 overflow-y-auto pointer-events-auto
       [&::-webkit-scrollbar]:w-1.5
       [&::-webkit-scrollbar-track]:bg-transparent
       [&::-webkit-scrollbar-thumb]:bg-white/25
@@ -60,18 +60,12 @@ export function SidebarTitle({ children }: { children?: React.ReactNode }) {
   return <div className={sidebarTitle({ theme })}>{children}</div>;
 }
 
-export function SidebarItem({
-  children,
-  item,
-}: {
-  children?: React.ReactNode;
-  item: string;
-}) {
+export function SidebarItem({ item }: { item: SidebarItemType }) {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <Link href={`/${slugify(item)}`}>
-      <div className={sidebarItem({ theme })}>{children}</div>
+    <Link href={`/portfolio/${item.path}`}>
+      <div className={sidebarItem({ theme })}>{item.label}</div>
     </Link>
   );
 }

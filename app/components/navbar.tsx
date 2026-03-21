@@ -10,11 +10,12 @@ import linkedin from "@/public/linkedin.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { LanguageContext } from "../contexts/language";
+import { ContainerFixed } from "./container-fixed";
 
 const navbar = tv({
   slots: {
-    base: "py-3 md:px:10 text-sm font-figree flex items-center justify-center z-5 transition-colors",
-    left: "flex items-center gap-x-15 w-full h-ful",
+    base: "py-3 md:px:10 text-sm font-figree flex items-center justify-center z-5 transition-colors pointer-events-auto",
+    left: "flex items-center gap-x-15 w-full h-ful ",
     pages: " gap-x-10 hidden md:flex",
     menu: "flex gap-x-5 items-center",
   },
@@ -51,49 +52,51 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={base()}>
-      <div className={left()}>
-        <Image src={logo} alt="logo"></Image>
-        <div className={pages()}>
-          {text.navbar.pages.map((page, index) => (
-            <span key={index} className={navItem({ selected: index === 0 })}>
-              {page}
-            </span>
-          ))}
+    <ContainerFixed>
+      <nav className={base()}>
+        <div className={left()}>
+          <Image src={logo} alt="logo"></Image>
+          <div className={pages()}>
+            {text.navbar.pages.map((page, index) => (
+              <span key={index} className={navItem({ selected: index === 0 })}>
+                {page}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className={menu()}>
-        <span
-          className={navItem({ className: "text-lg" })}
-          onClick={switchLanguage}
-        >
-          {text.navbar.language.toUpperCase()}
-        </span>
-        <div className="w-5 h-5 relative">
-          <Image
-            src={theme == "dark" ? dark : light}
-            alt="theme-icon"
-            onClick={switchTheme}
-            fill
-            className={navItem({ theme, className: "object-cover" })}
-          />
-        </div>
-
-        <Link
-          href="https://www.linkedin.com/in/vinicius-sorgetz"
-          target="_blank"
-          className="flex justify-center w-fit"
-        >
+        <div className={menu()}>
+          <span
+            className={navItem({ className: "text-lg" })}
+            onClick={switchLanguage}
+          >
+            {text.navbar.language.toUpperCase()}
+          </span>
           <div className="w-5 h-5 relative">
             <Image
-              src={linkedin}
-              alt="LinkedIn"
+              src={theme == "dark" ? dark : light}
+              alt="theme-icon"
+              onClick={switchTheme}
               fill
               className={navItem({ theme, className: "object-cover" })}
             />
           </div>
-        </Link>
-      </div>
-    </nav>
+
+          <Link
+            href="https://www.linkedin.com/in/vinicius-sorgetz"
+            target="_blank"
+            className="flex justify-center w-fit"
+          >
+            <div className="w-5 h-5 relative">
+              <Image
+                src={linkedin}
+                alt="LinkedIn"
+                fill
+                className={navItem({ theme, className: "object-cover" })}
+              />
+            </div>
+          </Link>
+        </div>
+      </nav>
+    </ContainerFixed>
   );
 }
