@@ -9,9 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "geist": "^1.7.0",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-syntax-highlighter": "^16.1.1",
     "slugify": "^1.6.8",
     "tailwind-merge": "^3.5.0",
     "tailwind-variants": "^3.2.2"
@@ -21,8 +23,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "shiki": "^4.0.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
