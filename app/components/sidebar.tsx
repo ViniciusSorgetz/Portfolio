@@ -1,12 +1,8 @@
 import { tv } from "tailwind-variants";
-import { useContext } from "react";
-import { ThemeContext } from "../contexts/theme";
-import Link from "next/link";
-import { SidebarItem as SidebarItemType } from "../languages";
 
 const sidebar = tv({
   base: `
-      h-screen w-60 pr-10 overflow-y-auto pointer-events-auto
+      h-screen pr-10 w-60 overflow-y-auto pointer-events-auto
       [&::-webkit-scrollbar]:w-1.5
       [&::-webkit-scrollbar-track]:bg-transparent
       [&::-webkit-scrollbar-thumb]:bg-white/25
@@ -18,61 +14,6 @@ const sidebar = tv({
     },
   },
 });
-
-const sidebarLine = tv({
-  base: "h-0.5 rounded-full w-auto my-6",
-  variants: {
-    theme: {
-      dark: "bg-white/20",
-      light: "bg-black/20",
-    },
-  },
-});
-
-const sidebarTitle = tv({
-  base: "font-bold",
-  variants: {
-    theme: {
-      dark: "text-white",
-      light: "text-black",
-    },
-  },
-});
-
-const sidebarItem = tv({
-  base: "text-sm/8",
-  variants: {
-    theme: {
-      dark: "text-white/75",
-      light: "text-black/75",
-      selected: "font-bold text-green-300",
-    },
-  },
-});
-
-export function SidebarLine() {
-  const { theme } = useContext(ThemeContext);
-  return <div className={sidebarLine({ theme })} />;
-}
-
-export function SidebarTitle({ children }: { children?: React.ReactNode }) {
-  const { theme } = useContext(ThemeContext);
-  return <div className={sidebarTitle({ theme })}>{children}</div>;
-}
-
-export function SidebarItem({ item }: { item: SidebarItemType }) {
-  const { theme } = useContext(ThemeContext);
-
-  return (
-    <Link href={`/portfolio/${item.path}`}>
-      <div className={sidebarItem({ theme })}>{item.label}</div>
-    </Link>
-  );
-}
-
-export function SidebarGroup({ children }: { children?: React.ReactNode }) {
-  return <div>{children}</div>;
-}
 
 export function Sidebar({
   position,

@@ -2,15 +2,9 @@
 
 import { tv } from "tailwind-variants";
 import { ThemeContext } from "../contexts/theme";
-import { LanguageContext } from "../contexts/language";
 import { useContext } from "react";
-import {
-  Sidebar,
-  SidebarGroup,
-  SidebarItem,
-  SidebarLine,
-  SidebarTitle,
-} from "../components/sidebar";
+import { SidebarLeft } from "../components/sidebar-left";
+import { Sidebar } from "../components/sidebar";
 import { ContainerFixed } from "../components/container-fixed";
 
 const sidebars = tv({
@@ -38,7 +32,6 @@ export default function PortfolioLayout({
   children: React.ReactNode;
 }) {
   const { theme } = useContext(ThemeContext);
-  const { text } = useContext(LanguageContext);
 
   const { base, container } = content();
 
@@ -46,17 +39,7 @@ export default function PortfolioLayout({
     <div>
       <ContainerFixed>
         <div className={sidebars({ theme })}>
-          <Sidebar position="left">
-            {text.sidebarLeft.groups.map((group, index) => (
-              <SidebarGroup key={index}>
-                <SidebarTitle>{group.title}</SidebarTitle>
-                {group.items.map((item, itemIndex) => (
-                  <SidebarItem key={itemIndex} item={item} />
-                ))}
-                {index + 1 < text.sidebarLeft.groups.length && <SidebarLine />}
-              </SidebarGroup>
-            ))}
-          </Sidebar>
+          <SidebarLeft />
           <Sidebar position="right">h</Sidebar>
         </div>
       </ContainerFixed>
