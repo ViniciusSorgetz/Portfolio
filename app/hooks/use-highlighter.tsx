@@ -18,7 +18,7 @@ export function useHighlighter(code: string) {
     }
 
     highlightCode();
-  }, [theme]);
+  }, [theme, code]);
 
   return highlightedCode;
 }

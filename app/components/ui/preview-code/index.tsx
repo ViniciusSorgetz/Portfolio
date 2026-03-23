@@ -1,8 +1,7 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import { useContext, useState } from "react";
-import { ThemeContext } from "@/app/contexts/theme";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ContentParagraph } from "../content-paragraph";
 import { useHighlighter } from "@/app/hooks/use-highlighter";
@@ -21,7 +20,6 @@ interface PreviewCodeProps {
 
 export function PreviewCode({ preview, code, codeMode }: PreviewCodeProps) {
   const [previewMode, setPreviewMode] = useState(!codeMode);
-  const { theme } = useContext(ThemeContext);
   const highlightedCode = useHighlighter(code);
 
   return (
