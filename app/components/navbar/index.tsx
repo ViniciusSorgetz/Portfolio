@@ -1,46 +1,17 @@
 "use client";
 
 import { useContext } from "react";
-import { tv } from "tailwind-variants";
-import { ThemeContext } from "../contexts/theme";
-import logo from "@/public/logo.svg";
-import dark from "@/public/dark.svg";
-import light from "@/public/light.svg";
-import linkedin from "@/public/linkedin.svg";
+import { ThemeContext } from "@contexts/theme";
+import logo from "@/public/images/icons/logo.svg";
+import dark from "@/public/images/icons/dark.svg";
+import light from "@/public/images/icons/light.svg";
+import linkedin from "@/public/images/icons/linkedin.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { LanguageContext } from "../contexts/language";
-import { ContainerFixed } from "./container-fixed";
-
-const navbar = tv({
-  slots: {
-    base: "py-3 md:px:10 text-sm font-figree flex items-center justify-center z-5 transition-colors pointer-events-auto",
-    left: "flex items-center gap-x-15 w-full h-ful ",
-    pages: " gap-x-10 hidden md:flex",
-    menu: "flex gap-x-5 items-center",
-  },
-  variants: {
-    theme: {
-      light: {
-        base: "bg-white text-black/75",
-      },
-      dark: {
-        base: "bg-zinc-950 text-white/75",
-      },
-    },
-  },
-});
-
-const navItem = tv({
-  base: "hover:cursor-pointer transition-transform duration-150 active:scale-80",
-  variants: {
-    selected: { true: "font-bold text-galaxy" },
-    theme: {
-      dark: "",
-      light: "invert-75",
-    },
-  },
-});
+import { LanguageContext } from "@contexts/language";
+import { ContainerFixed } from "@components/container-fixed";
+import { useNavigate } from "@hooks/use-navigate";
+import { navbar, navItem } from "./variants";
 
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -51,6 +22,8 @@ export default function Navbar() {
     setTheme(theme == "dark" ? "light" : "dark");
   }
 
+  const { currentPage, setCurrentPage } = useNavigate();
+
   return (
     <ContainerFixed>
       <nav className={base()}>
@@ -58,9 +31,14 @@ export default function Navbar() {
           <Image src={logo} alt="logo"></Image>
           <div className={pages()}>
             {text.navbar.pages.map((page, index) => (
-              <span key={index} className={navItem({ selected: index === 0 })}>
-                {page}
-              </span>
+              <Link
+                key={index}
+                href={page.path}
+                className={navItem({ selected: index === currentPage })}
+                onClick={() => setCurrentPage(index)}
+              >
+                {page.label}
+              </Link>
             ))}
           </div>
         </div>

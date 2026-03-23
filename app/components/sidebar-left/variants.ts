@@ -17,6 +17,9 @@ export const sidebarItem = tv({
       dark: "text-white/75",
       light: "text-black/75",
     },
+    active: {
+      true: "font-semibold text-green-300",
+    },
   },
 });
 

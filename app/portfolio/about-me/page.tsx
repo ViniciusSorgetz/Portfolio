@@ -1,4 +1,4 @@
-import profile from "@/public/profile.png";
+import profile from "@/public/images/pictures/profile.png";
 import { PreviewCode } from "@/app/components/ui/preview-code";
 import { ContentTitle } from "@/app/components/ui/content-title";
 import { ContentParagraph } from "@/app/components/ui/content-paragraph";

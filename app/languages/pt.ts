@@ -17,9 +17,16 @@ const sidebarLabels = [
   },
 ];
 
+const navbarPages = ["Apresentação", "Portfílio", "Contato"];
+
 export const pt: Text = {
   navbar: {
-    pages: ["Apresentação", "Portfílio", "Contato"],
+    pages: navbarPages.map((page, index) => {
+      return {
+        label: page,
+        path: en.navbar.pages[index].path,
+      };
+    }),
     language: "pt",
   },
   aboutMe: {

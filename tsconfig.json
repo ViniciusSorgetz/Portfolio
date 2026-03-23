@@ -25,6 +25,7 @@
       "@contexts/*": ["./app/contexts/*"],
       "@utils/*": ["./app/utils/*"],
       "@languages/*": ["./app/languages/*"],
+      "@hooks/*": ["./app/hooks/*"],
     },
   },
   "include": [

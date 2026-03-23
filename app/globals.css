@@ -1,9 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
 @import "tailwindcss";
-.font-figtree {
-    font-family: "Figtree", sans-serif;
-    font-optical-sizing: auto;
+
+@font-face {
+    font-family: "Figtree";
+    src: url("/fonts/Figtree-VariableFont_wght.ttf");
+    font-weight: 300 900;
     font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    src: url("/fonts/GeistMono-Regular.ttf");
+}
+
+.figtree {
+    font-family: "Figtree", sans-serif;
 }
 
 .geist {
@@ -20,9 +31,12 @@
     -webkit-text-fill-color: transparent;
 }
 
-@font-face {
-    font-family: "Geist Mono";
-    src: url("/fonts/GeistMono-Regular.ttf");
+.bg-galaxy {
+    background-image: -webkit-linear-gradient(
+        50deg,
+        rgba(82, 113, 237, 1) 0%,
+        rgba(117, 59, 188, 1) 100%
+    );
 }
 
 pre {

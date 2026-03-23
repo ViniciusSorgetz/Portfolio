@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "@/app/contexts/theme";
 import { twMerge } from "tailwind-merge";
 import { ContentParagraph } from "../content-paragraph";
-import { useHighlighter } from "@/app/hooks/useHighlighter";
+import { useHighlighter } from "@/app/hooks/use-highlighter";
 import { button, container, image } from "./variants";
 
 interface PreviewCodeProps {

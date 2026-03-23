@@ -10,7 +10,10 @@ interface SidebarGroup {
 
 export interface Text {
   navbar: {
-    pages: string[];
+    pages: {
+      label: string;
+      path: string;
+    }[];
     language: string;
   };
   aboutMe: {

@@ -18,7 +18,11 @@ const sidebarGroups = [
 
 export const en: Text = {
   navbar: {
-    pages: ["Showcase", "Portfolio", "Contact"],
+    pages: [
+      { label: "Showcase", path: "/" },
+      { label: "Portfolio", path: "/portfolio/about-me" },
+      { label: "Contact", path: "/contact/" },
+    ],
     language: "en",
   },
   aboutMe: {
