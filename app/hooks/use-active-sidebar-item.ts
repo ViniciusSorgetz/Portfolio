@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SidebarItem } from "@languages/text";
+import { usePathname } from "next/navigation";
 
 interface ActiveItem {
   groupIndex: number;
@@ -9,10 +10,10 @@ interface ActiveItem {
 }
 
 function getActiveItemFromUrl(
-  groups: { items: SidebarItem[] }[]
+  groups: { items: SidebarItem[] }[],
+  path: string,
 ): ActiveItem | null {
-  const url = window.location.href;
-  const pathParts = url.split("/");
+  const pathParts = path.split("/");
   const currentPath = pathParts[pathParts.length - 1];
 
   for (let groupIndex = 0; groupIndex < groups.length; groupIndex++) {
@@ -27,8 +28,10 @@ function getActiveItemFromUrl(
 }
 
 export function useActiveSidebarItem(groups: { items: SidebarItem[] }[]) {
+  const path = usePathname();
+
   const [activeItem, setActiveItem] = useState<ActiveItem | null>(() =>
-    getActiveItemFromUrl(groups)
+    getActiveItemFromUrl(groups, path),
   );
 
   return { activeItem, setActiveItem };

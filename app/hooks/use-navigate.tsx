@@ -1,20 +1,22 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-function getCurrentPageFromUrl(): number {
-  const url = window.location.href;
-  if (url.includes("portfolio")) {
+function getCurrentPageFromUrl(path: string): number {
+  if (path.includes("portfolio")) {
     return 1;
-  } else if (url.includes("contact")) {
+  } else if (path.includes("contact")) {
     return 2;
   }
   return 0;
 }
 
 export function useNavigate() {
+  const path = usePathname();
+
   const [currentPage, setCurrentPage] = useState<number>(() =>
-    getCurrentPageFromUrl()
+    getCurrentPageFromUrl(path),
   );
 
   return { currentPage, setCurrentPage };
