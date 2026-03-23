@@ -15,7 +15,6 @@ interface TrackedSessionProps {
 export function TrackedSession({
   isFirst = false,
   isLast = false,
-  sessionId,
   title,
   children,
 }: TrackedSessionProps) {
@@ -39,7 +38,6 @@ export function TrackedSession({
 
   return (
     <section ref={section} className="mb-20">
-      {currentSession}
       {children}
     </section>
   );

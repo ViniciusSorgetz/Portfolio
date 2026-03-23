@@ -5,15 +5,58 @@ import { en } from "./en";
 const sidebarLabels = [
   {
     title: "Começando",
-    labels: ["Sobre mim", "Tecnologias", "Habilidades"],
+    items: [
+      {
+        label: "Sobre mim",
+        sessions: [""],
+      },
+      {
+        label: "Tecnologias",
+        sessions: ["JavaScript", "TypeScript"],
+      },
+      {
+        label: "Habilidades",
+        sessions: [""],
+      },
+    ],
   },
   {
     title: "Projetos",
-    labels: ["Lockers System", "E-Commerce", "Clone Tabnews", "Stocotoon"],
+    items: [
+      {
+        label: "Lockers System",
+        sessions: [""],
+      },
+      {
+        label: "E-Commerce",
+        sessions: [""],
+      },
+      {
+        label: "Clone Tabnews",
+        sessions: [""],
+      },
+      {
+        label: "Stocotoon",
+        sessions: [""],
+      },
+    ],
   },
   {
     title: "Currículo",
-    labels: ["Formação", "Experiência", "Certificados"],
+    items: [
+      {
+        label: "Formação",
+        sessions: [""],
+      },
+      {
+        label: "Experiência",
+        sessions: [""],
+      },
+      {
+        label: "Certificados",
+        sessions: [""],
+      },
+    ],
   },
 ];
 
@@ -45,11 +88,12 @@ export const pt: Text = {
   sidebarLeft: {
     groups: sidebarLabels.map((group, index) => ({
       title: group.title,
-      items: group.labels.map((label, itemIndex) => ({
-        label,
+      items: group.items.map((item, itemIndex) => ({
+        label: item.label,
         path: slugify(en.sidebarLeft.groups[index].items[itemIndex].label, {
           lower: true,
         }),
+        sessions: item.sessions,
       })),
     })),
   },

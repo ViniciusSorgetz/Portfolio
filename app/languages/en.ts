@@ -4,15 +4,66 @@ import { Text } from "./text";
 const sidebarGroups = [
   {
     title: "Getting Started",
-    labels: ["About me", "Technologies", "Skills"],
+    items: [
+      {
+        label: "About me",
+        sessions: [""],
+      },
+      {
+        label: "Technologies",
+        sessions: [
+          "Languages",
+          "Backend",
+          "Frontend",
+          "Tests",
+          "Devops",
+          "Tools",
+          "Archtectures",
+        ],
+      },
+      {
+        label: "Skills",
+        sessions: [""],
+      },
+    ],
   },
   {
     title: "Projects",
-    labels: ["Lockers System", "E-Commerce", "Clone Tabnews", "Stocotoon"],
+    items: [
+      {
+        label: "Lockers System",
+        sessions: [""],
+      },
+      {
+        label: "E-Commerce",
+        sessions: [""],
+      },
+      {
+        label: "Clone Tabnews",
+        sessions: [""],
+      },
+      {
+        label: "Stocotoon",
+        sessions: [""],
+      },
+    ],
   },
   {
     title: "Resume",
-    labels: ["Training", "Experience", "Certificates"],
+    items: [
+      {
+        label: "Training",
+        sessions: [""],
+      },
+      {
+        label: "Experience",
+        sessions: [""],
+      },
+      {
+        label: "Certificates",
+        sessions: [""],
+      },
+    ],
   },
 ];
 
@@ -39,9 +90,10 @@ export const en: Text = {
   sidebarLeft: {
     groups: sidebarGroups.map((group) => ({
       title: group.title,
-      items: group.labels.map((label) => ({
-        label,
-        path: slugify(label, { lower: true }),
+      items: group.items.map((item) => ({
+        label: item.label,
+        path: slugify(item.label, { lower: true }),
+        sessions: item.sessions,
       })),
     })),
   },

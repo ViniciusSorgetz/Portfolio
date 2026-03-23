@@ -4,6 +4,7 @@ import { tv } from "tailwind-variants";
 import { TocElement } from "./toc-element";
 import { useContext } from "react";
 import { ThemeContext } from "@/app/contexts/theme";
+import { TocContext } from "@/app/contexts/toc";
 
 const tableOfContent = tv({
   base: "text-base font-semibold border-b-2 w-[80%] pb-2",
@@ -17,16 +18,15 @@ const tableOfContent = tv({
 
 export function TableOfContent() {
   const { theme } = useContext(ThemeContext);
+  const { sessions } = useContext(TocContext);
 
   return (
     <div className="flex flex-col gap-5">
       <span className={tableOfContent({ theme })}>On this page</span>
       <ul>
-        {["Session 1", "Session 2", "Session 3", "Session 4", "Session 5"].map(
-          (item) => (
-            <TocElement key={item} label={item} />
-          ),
-        )}
+        {sessions.map((item) => (
+          <TocElement key={item} label={item} />
+        ))}
       </ul>
     </div>
   );
