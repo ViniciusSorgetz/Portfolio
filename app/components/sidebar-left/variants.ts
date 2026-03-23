@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const sidebarTitle = tv({
-  base: "font-bold",
+  base: "font-bold figtree",
   variants: {
     theme: {
       dark: "text-white",
@@ -11,7 +11,7 @@ export const sidebarTitle = tv({
 });
 
 export const sidebarItem = tv({
-  base: "text-sm/8",
+  base: "text-sm/8 figtree",
   variants: {
     theme: {
       dark: "text-white/75",

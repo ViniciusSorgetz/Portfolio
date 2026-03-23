@@ -6,6 +6,8 @@ import { useContext } from "react";
 import { SidebarLeft } from "../components/sidebar-left";
 import { Sidebar } from "../components/sidebar";
 import { ContainerFixed } from "../components/container-fixed";
+import { SidebarRight } from "../components/sidebar-right";
+import { TocContextProvider } from "../contexts/toc";
 
 const sidebars = tv({
   base: "flex justify-between mt-20 pointer-events-none",
@@ -37,15 +39,17 @@ export default function PortfolioLayout({
 
   return (
     <div>
-      <ContainerFixed>
-        <div className={sidebars({ theme })}>
-          <SidebarLeft />
-          <Sidebar position="right">h</Sidebar>
+      <TocContextProvider>
+        <ContainerFixed>
+          <div className={sidebars({ theme })}>
+            <SidebarLeft />
+            <SidebarRight />
+          </div>
+        </ContainerFixed>
+        <div className={container()}>
+          <div className={base()}>{children}</div>
         </div>
-      </ContainerFixed>
-      <div className={container()}>
-        <div className={base()}>{children}</div>
-      </div>
+      </TocContextProvider>
     </div>
   );
 }
