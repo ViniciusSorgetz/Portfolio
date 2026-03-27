@@ -4,10 +4,8 @@ import { tv } from "tailwind-variants";
 import { ThemeContext } from "../contexts/theme";
 import { useContext } from "react";
 import { SidebarLeft } from "../components/sidebar-left";
-import { Sidebar } from "../components/sidebar";
 import { ContainerFixed } from "../components/container-fixed";
 import { SidebarRight } from "../components/sidebar-right";
-import { TocContextProvider } from "../contexts/toc";
 
 const sidebars = tv({
   base: "flex justify-between mt-20 pointer-events-none",
@@ -39,17 +37,15 @@ export default function PortfolioLayout({
 
   return (
     <div>
-      <TocContextProvider>
-        <ContainerFixed>
-          <div className={sidebars({ theme })}>
-            <SidebarLeft />
-            <SidebarRight />
-          </div>
-        </ContainerFixed>
-        <div className={container()}>
-          <div className={base()}>{children}</div>
+      <ContainerFixed>
+        <div className={sidebars({ theme })}>
+          <SidebarLeft />
+          <SidebarRight />
         </div>
-      </TocContextProvider>
+      </ContainerFixed>
+      <div className={container()}>
+        <div className={base()}>{children}</div>
+      </div>
     </div>
   );
 }

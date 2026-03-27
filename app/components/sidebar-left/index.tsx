@@ -8,6 +8,7 @@ import { Sidebar } from "../sidebar";
 import { sidebarItem, sidebarLine, sidebarTitle } from "./variants";
 import { useActiveSidebarItem } from "@hooks/use-active-sidebar-item";
 import { TocContext } from "@/app/contexts/toc";
+import { SidebarItem } from "@/app/languages";
 
 export function SidebarLeft() {
   const { theme } = useContext(ThemeContext);
@@ -16,9 +17,17 @@ export function SidebarLeft() {
   const { activeItem, setActiveItem } = useActiveSidebarItem(
     text.sidebarLeft.groups,
   );
+  const { setItemId } = useContext(TocContext);
   useEffect(() => {
     setSessions(activeItem?.item.sessions ?? []);
+    setItemId(activeItem?.item.id ?? "");
   }, []);
+
+  function changeItem(groupIndex: number, item: SidebarItem) {
+    setActiveItem({ groupIndex, item });
+    setSessions(item.sessions);
+    setItemId(item.id);
+  }
 
   return (
     <Sidebar position="left">
@@ -34,10 +43,7 @@ export function SidebarLeft() {
               <Link
                 key={itemIndex}
                 href={`/portfolio/${item.path}`}
-                onClick={() => {
-                  setActiveItem({ groupIndex: index, item });
-                  setSessions(item.sessions);
-                }}
+                onClick={() => changeItem(index, item)}
               >
                 <div className={sidebarItem({ theme, active: isActive })}>
                   {item.label}

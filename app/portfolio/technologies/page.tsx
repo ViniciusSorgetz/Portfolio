@@ -5,8 +5,6 @@ import { useContext } from "react";
 import { LanguageContext } from "@/app/contexts/language";
 
 export default function TechnologiesPage() {
-  const { text } = useContext(LanguageContext);
-
   return (
     <div>
       <TrackedSession sessionId={0} title="Session 1" isFirst={true}>

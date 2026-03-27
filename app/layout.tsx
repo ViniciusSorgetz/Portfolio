@@ -5,6 +5,7 @@ import { ThemeProvider } from "./contexts/theme";
 import { LanguageProvider } from "./contexts/language";
 import Navbar from "./components/navbar";
 import { Container } from "./components/container";
+import { TocContextProvider } from "./contexts/toc";
 
 export default function RootLayout({
   children,
@@ -18,12 +19,14 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
-          <LanguageProvider>
-            <Container>
-              <Navbar />
-              {children}
-            </Container>
-          </LanguageProvider>
+          <TocContextProvider>
+            <LanguageProvider>
+              <Container>
+                <Navbar />
+                {children}
+              </Container>
+            </LanguageProvider>
+          </TocContextProvider>
         </ThemeProvider>
       </body>
     </html>

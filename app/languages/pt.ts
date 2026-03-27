@@ -86,14 +86,18 @@ export const pt: Text = {
     },
   },
   sidebarLeft: {
-    groups: sidebarLabels.map((group, index) => ({
+    groups: sidebarLabels.map((group, groupIndex) => ({
       title: group.title,
       items: group.items.map((item, itemIndex) => ({
         label: item.label,
-        path: slugify(en.sidebarLeft.groups[index].items[itemIndex].label, {
-          lower: true,
-        }),
+        path: slugify(
+          en.sidebarLeft.groups[groupIndex].items[itemIndex].label,
+          {
+            lower: true,
+          },
+        ),
         sessions: item.sessions,
+        id: `${groupIndex}-${itemIndex}`,
       })),
     })),
   },

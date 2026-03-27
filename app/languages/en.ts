@@ -88,12 +88,13 @@ export const en: Text = {
     },
   },
   sidebarLeft: {
-    groups: sidebarGroups.map((group) => ({
+    groups: sidebarGroups.map((group, groupIndex) => ({
       title: group.title,
-      items: group.items.map((item) => ({
+      items: group.items.map((item, itemIndex) => ({
         label: item.label,
         path: slugify(item.label, { lower: true }),
         sessions: item.sessions,
+        id: `${groupIndex}-${itemIndex}`,
       })),
     })),
   },

@@ -2,6 +2,7 @@ export interface SidebarItem {
   label: string;
   path: string;
   sessions: string[];
+  id: string;
 }
 
 interface SidebarGroup {
