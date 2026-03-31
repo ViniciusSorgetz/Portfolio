@@ -1,29 +1,50 @@
 import slugify from "slugify";
-import { Text } from "./text";
+import { Page } from "./language";
 
-const sidebarGroups = [
+const portfolioPages: Page[] = [
   {
     title: "Getting Started",
     items: [
       {
-        label: "About me",
-        sessions: [""],
+        title: "About me",
+        sessions: [],
       },
       {
-        label: "Technologies",
+        title: "Technologies",
         sessions: [
-          "Languages",
-          "Backend",
-          "Frontend",
-          "Tests",
-          "Devops",
-          "Tools",
-          "Archtectures",
+          {
+            title: "Languages",
+            rows: [],
+          },
+          {
+            title: "Backend",
+            rows: [],
+          },
+          {
+            title: "Frontend",
+            rows: [],
+          },
+          {
+            title: "Tests",
+            rows: [],
+          },
+          {
+            title: "Devops",
+            rows: [],
+          },
+          {
+            title: "Tools",
+            rows: [],
+          },
+          {
+            title: "Archtectures",
+            rows: [],
+          },
         ],
       },
       {
-        label: "Skills",
-        sessions: [""],
+        title: "Skills",
+        sessions: [],
       },
     ],
   },
@@ -31,20 +52,20 @@ const sidebarGroups = [
     title: "Projects",
     items: [
       {
-        label: "Lockers System",
-        sessions: [""],
+        title: "Lockers System",
+        sessions: [],
       },
       {
-        label: "E-Commerce",
-        sessions: [""],
+        title: "E-Commerce",
+        sessions: [],
       },
       {
-        label: "Clone Tabnews",
-        sessions: [""],
+        title: "Clone Tabnews",
+        sessions: [],
       },
       {
-        label: "Stocotoon",
-        sessions: [""],
+        title: "Stocotoon",
+        sessions: [],
       },
     ],
   },
@@ -52,22 +73,22 @@ const sidebarGroups = [
     title: "Resume",
     items: [
       {
-        label: "Training",
-        sessions: [""],
+        title: "Training",
+        sessions: [],
       },
       {
-        label: "Experience",
-        sessions: [""],
+        title: "Experience",
+        sessions: [],
       },
       {
-        label: "Certificates",
-        sessions: [""],
+        title: "Certificates",
+        sessions: [],
       },
     ],
   },
 ];
 
-export const en: Text = {
+export const en = {
   navbar: {
     pages: [
       { label: "Showcase", path: "/" },
@@ -87,15 +108,16 @@ export const en: Text = {
       code: "",
     },
   },
-  sidebarLeft: {
-    groups: sidebarGroups.map((group, groupIndex) => ({
-      title: group.title,
-      items: group.items.map((item, itemIndex) => ({
-        label: item.label,
-        path: slugify(item.label, { lower: true }),
-        sessions: item.sessions,
-        id: `${groupIndex}-${itemIndex}`,
-      })),
+
+  portfolioPages: portfolioPages.map((group, groupIndex) => ({
+    title: group.title,
+    items: group.items.map((item, itemIndex) => ({
+      id: `${groupIndex}-${itemIndex}`,
+      title: item.title,
+      path: slugify(item.title, { lower: true }),
+      sessions: item.sessions,
     })),
-  },
+  })),
 };
+
+export type Language = typeof en;

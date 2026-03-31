@@ -1,8 +1,7 @@
 "use client";
 
 import React, { createContext, useState } from "react";
-import { Text } from "../languages";
-import { en } from "../languages";
+import { Language } from "../languages";
 
 interface TocContextType {
   currentSession: string;
@@ -11,7 +10,7 @@ interface TocContextType {
   setSessions: React.Dispatch<React.SetStateAction<string[]>>;
   itemId: string;
   setItemId: React.Dispatch<React.SetStateAction<string>>;
-  updateSessions: (language: Text) => void;
+  updateSessions: (language: Language) => void;
 }
 
 export const TocContext = createContext<TocContextType>({
@@ -39,14 +38,13 @@ export function TocContextProvider({
   ]);
   const [itemId, setItemId] = useState("");
 
-  function updateSessions(language: Text) {
-    for (const group of language.sidebarLeft.groups) {
-      for (const item of group.items) {
-        if (item.id == itemId) {
-          setSessions(item.sessions);
-        }
-      }
-    }
+  function updateSessions(language: Language) {
+    const indexes = itemId.split("-");
+    const groupIndex = parseInt(indexes[0]);
+    const itemIndex = parseInt(indexes[1]);
+    const item = language.portfolioPages[groupIndex].items[itemIndex];
+    const mappedSessions = item.sessions.map((session) => session.title);
+    setSessions(mappedSessions);
   }
 
   return (

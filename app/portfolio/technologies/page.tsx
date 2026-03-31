@@ -7,6 +7,7 @@ import { LanguageContext } from "@/app/contexts/language";
 export default function TechnologiesPage() {
   return (
     <div>
+      <ContentTitle>Titulo</ContentTitle>
       <TrackedSession sessionId={0} title="Session 1" isFirst={true}>
         <ContentParagraph
           paragraphs={[

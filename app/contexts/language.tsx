@@ -1,14 +1,14 @@
 "use client";
 
 import React, { createContext, useContext, useState } from "react";
-import { Text, en, pt } from "@languages/.";
+import { Language, en, pt } from "@languages/.";
 import { languageType } from "@utils/types/language";
 import { TocContext } from "./toc";
 
-const deafultText: Text = en;
+const deafultText: Language = en;
 
 interface LanguageContextType {
-  text: Text;
+  text: Language;
   switchLanguage: () => void;
 }
 
@@ -21,7 +21,7 @@ export function LanguageProvider({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [text, setText] = useState<Text>(deafultText);
+  const [text, setText] = useState<Language>(deafultText);
   const [language, setLanguage] = useState<languageType>("en");
   const { updateSessions } = useContext(TocContext);
 
@@ -29,7 +29,7 @@ export function LanguageProvider({
     const newLanguage = language == "en" ? "pt" : "en";
     setLanguage(newLanguage);
 
-    let newText: Text;
+    let newText: Language;
 
     switch (newLanguage) {
       case "en":

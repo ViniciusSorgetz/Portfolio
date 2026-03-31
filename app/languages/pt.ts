@@ -1,22 +1,27 @@
 import slugify from "slugify";
-import { Text } from "./text";
-import { en } from "./en";
+import { en, Language } from "./en";
+import { Page } from "./language";
 
-const sidebarLabels = [
+const portfolioPages: Page[] = [
   {
     title: "Começando",
     items: [
       {
-        label: "Sobre mim",
-        sessions: [""],
+        title: "Sobre mim",
+        sessions: [],
       },
       {
-        label: "Tecnologias",
-        sessions: ["JavaScript", "TypeScript"],
+        title: "Tecnologias",
+        sessions: [
+          {
+            title: "JavaScript",
+            rows: [],
+          },
+        ],
       },
       {
-        label: "Habilidades",
-        sessions: [""],
+        title: "Habilidades",
+        sessions: [],
       },
     ],
   },
@@ -24,20 +29,20 @@ const sidebarLabels = [
     title: "Projetos",
     items: [
       {
-        label: "Lockers System",
-        sessions: [""],
+        title: "Lockers System",
+        sessions: [],
       },
       {
-        label: "E-Commerce",
-        sessions: [""],
+        title: "E-Commerce",
+        sessions: [],
       },
       {
-        label: "Clone Tabnews",
-        sessions: [""],
+        title: "Clone Tabnews",
+        sessions: [],
       },
       {
-        label: "Stocotoon",
-        sessions: [""],
+        title: "Stocotoon",
+        sessions: [],
       },
     ],
   },
@@ -45,16 +50,16 @@ const sidebarLabels = [
     title: "Currículo",
     items: [
       {
-        label: "Formação",
-        sessions: [""],
+        title: "Formação",
+        sessions: [],
       },
       {
-        label: "Experiência",
-        sessions: [""],
+        title: "Experiência",
+        sessions: [],
       },
       {
-        label: "Certificados",
-        sessions: [""],
+        title: "Certificados",
+        sessions: [],
       },
     ],
   },
@@ -62,12 +67,13 @@ const sidebarLabels = [
 
 const navbarPages = ["Apresentação", "Portfílio", "Contato"];
 
-export const pt: Text = {
+export const pt: Language = {
   navbar: {
     pages: navbarPages.map((page, index) => {
+      const paths = ["/", "/portfolio/about-me", "/contact/"];
       return {
         label: page,
-        path: en.navbar.pages[index].path,
+        path: paths[index],
       };
     }),
     language: "pt",
@@ -81,24 +87,24 @@ export const pt: Text = {
     },
     trajectory: {
       title: "Trajetória",
-      paragraphs: ["", ""],
+      paragraphs: [""],
       code: "",
     },
   },
-  sidebarLeft: {
-    groups: sidebarLabels.map((group, groupIndex) => ({
-      title: group.title,
-      items: group.items.map((item, itemIndex) => ({
-        label: item.label,
-        path: slugify(
-          en.sidebarLeft.groups[groupIndex].items[itemIndex].label,
-          {
-            lower: true,
-          },
-        ),
-        sessions: item.sessions,
+  portfolioPages: portfolioPages.map((group, groupIndex) => ({
+    title: group.title,
+    items: group.items.map((item, itemIndex) => {
+      if (!en.portfolioPages[groupIndex].items[itemIndex].path) {
+        throw new Error(
+          `Path not found for item in group ${groupIndex} item ${itemIndex}`,
+        );
+      }
+      return {
         id: `${groupIndex}-${itemIndex}`,
-      })),
-    })),
-  },
+        title: item.title,
+        path: en.portfolioPages[groupIndex].items[itemIndex].path,
+        sessions: item.sessions,
+      };
+    }),
+  })),
 };
