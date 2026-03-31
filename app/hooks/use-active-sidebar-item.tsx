@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { SidebarItem } from "@languages/text";
 import { usePathname } from "next/navigation";
+import { FinalItem, Item } from "../languages/language";
+import { Replace } from "../utils/replace";
 
 interface ActiveItem {
   groupIndex: number;
-  item: SidebarItem;
+  item: FinalItem;
 }
 
 function getActiveItemFromUrl(
-  groups: { items: SidebarItem[] }[],
+  groups: { items: FinalItem[] }[],
   path: string,
 ): ActiveItem | null {
   const pathParts = path.split("/");
@@ -27,7 +28,7 @@ function getActiveItemFromUrl(
   return null;
 }
 
-export function useActiveSidebarItem(groups: { items: SidebarItem[] }[]) {
+export function useActiveSidebarItem(groups: { items: FinalItem[] }[]) {
   const path = usePathname();
 
   const [activeItem, setActiveItem] = useState<ActiveItem | null>(() =>

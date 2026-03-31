@@ -1,19 +1,20 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { ContentParagraph } from "../content-paragraph";
 import { useHighlighter } from "@/app/hooks/use-highlighter";
 import { button, container, image } from "./variants";
+import { pre } from "motion/react-m";
 
 interface PreviewCodeProps {
   preview:
     | {
-        img: StaticImageData;
+        imgUrl: string;
         className?: string;
       }
-    | string[];
+    | string;
   code: string;
   codeMode?: boolean;
 }
@@ -40,12 +41,14 @@ export function PreviewCode({ preview, code, codeMode }: PreviewCodeProps) {
       </div>
       <div className={container({ theme: "dark" })}>
         {previewMode ? (
-          Array.isArray(preview) ? (
-            <ContentParagraph paragraphs={preview}></ContentParagraph>
+          typeof preview === "string" ? (
+            <ContentParagraph paragraph={preview}></ContentParagraph>
           ) : (
             <Image
-              src={preview.img}
-              alt={preview.img.src}
+              src={preview.imgUrl}
+              alt={preview.imgUrl}
+              width={20}
+              height={20}
               className={twMerge(image(), preview.className)}
             />
           )

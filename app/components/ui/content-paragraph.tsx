@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
-const paragraph = tv({
+const p = tv({
   base: "mb-10 transition-colors figtree",
   variants: {
     theme: {
@@ -16,19 +16,13 @@ const paragraph = tv({
 });
 
 export function ContentParagraph({
-  paragraphs,
+  paragraph,
   className,
 }: {
-  paragraphs: string[];
+  paragraph: string;
   className?: string;
 }) {
   const { theme } = useContext(ThemeContext);
 
-  return (
-    <p className={twMerge(paragraph({ theme }), className)}>
-      {paragraphs.map((paragraph, index) => (
-        <span key={index}>{paragraph}</span>
-      ))}
-    </p>
-  );
+  return <p className={twMerge(p({ theme }), className)}>{paragraph}</p>;
 }

@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { twMerge } from "tailwind-merge";
 import { tv } from "tailwind-variants";
 
-const title = tv({
-  base: "text-3xl mb-10 font-black figtree transition-colors",
+const subTitle = tv({
+  base: "mb-10 font-semibold figtree transition-colors",
   variants: {
     theme: {
       light: "text-black",
@@ -15,7 +15,7 @@ const title = tv({
   },
 });
 
-export function ContentTitle({
+export function ContentSubtitle({
   children,
   className,
 }: {
@@ -24,5 +24,7 @@ export function ContentTitle({
 }) {
   const { theme } = useContext(ThemeContext);
 
-  return <h1 className={twMerge(title({ theme }), className)}>{children}</h1>;
+  return (
+    <h2 className={twMerge(subTitle({ theme }), className)}>{children}</h2>
+  );
 }
