@@ -12,10 +12,11 @@ import { LanguageContext } from "@contexts/language";
 import { ContainerFixed } from "@components/container-fixed";
 import { useNavigate } from "@hooks/use-navigate";
 import { navbar, navItem } from "./variants";
+import { useTranslation } from "@/app/hooks/use-translation";
 
 export default function Navbar() {
   const { theme, setTheme } = useContext(ThemeContext);
-  const { text, switchLanguage } = useContext(LanguageContext);
+  const { language, switchLanguage } = useContext(LanguageContext);
   const { base, left, pages, menu } = navbar({ theme });
 
   function switchTheme() {
@@ -23,6 +24,7 @@ export default function Navbar() {
   }
 
   const { currentPage, setCurrentPage } = useNavigate();
+  const { gt } = useTranslation();
 
   return (
     <ContainerFixed>
@@ -30,7 +32,14 @@ export default function Navbar() {
         <div className={left()}>
           <Image src={logo} alt="logo"></Image>
           <div className={pages()}>
-            {text.navbar.pages.map((page, index) => (
+            {[
+              { label: gt({ en: "Showcase", pt: "Apresentação" }), path: "/" },
+              {
+                label: gt({ en: "Portfolio", pt: "Portfólio" }),
+                path: "/portfolio",
+              },
+              { label: gt({ en: "Contact", pt: "Contato" }), path: "/contact" },
+            ].map((page, index) => (
               <Link
                 key={index}
                 href={page.path}
@@ -47,7 +56,7 @@ export default function Navbar() {
             className={navItem({ className: "text-lg" })}
             onClick={switchLanguage}
           >
-            {text.navbar.language.toUpperCase()}
+            {language.toUpperCase()}
           </span>
           <div className="w-5 h-5 relative">
             <Image

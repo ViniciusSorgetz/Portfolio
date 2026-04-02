@@ -1,11 +1,11 @@
 "use client";
 
 import { tv } from "tailwind-variants";
-import { ThemeContext } from "../contexts/theme";
+import { ThemeContext } from "@contexts/theme";
 import { useContext } from "react";
-import { SidebarLeft } from "../components/sidebar-left";
-import { ContainerFixed } from "../components/container-fixed";
-import { SidebarRight } from "../components/sidebar-right";
+import { SidebarLeft } from "@components/sidebar-left";
+import { ContainerFixed } from "@components/container-fixed";
+import { SidebarRight } from "@components/sidebar-right";
 
 const sidebars = tv({
   base: "flex justify-between mt-20 pointer-events-none",
