@@ -3,19 +3,26 @@
 import { useContext } from "react";
 import { LanguageContext } from "../contexts/language";
 import { Text } from "../utils/types/text";
+import { Replace } from "../utils/replace";
 
 export function useTranslation() {
   const { language } = useContext(LanguageContext);
 
-  function gt({ en, pt }: Text): string {
+  function gt({ en, pt, emoji }: Replace<Text, { emoji?: string }>): string {
+    let result = "";
+
     switch (language) {
       case "en":
-        return en;
+        result += en;
+        break;
       case "pt":
-        return pt;
+        result += pt;
+        break;
       default:
-        return en;
+        result += en;
     }
+
+    return emoji ? `${result} ${emoji}` : result;
   }
 
   return { gt };

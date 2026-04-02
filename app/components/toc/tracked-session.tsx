@@ -21,7 +21,7 @@ export function TrackedSession({
   const section = useRef(null);
   const { currentSession, setCurrentSession } = useContext(TocContext);
 
-  const offsetStart = isFirst ? "start start" : "start center";
+  const offsetStart = "start center";
   const offsetEnd = isLast ? "end end" : "end center";
 
   const { scrollYProgress } = useScroll({
@@ -37,7 +37,7 @@ export function TrackedSession({
   });
 
   return (
-    <section ref={section} className="mb-20">
+    <section ref={section} className="mb-5">
       {children}
     </section>
   );
