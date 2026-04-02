@@ -68,9 +68,7 @@ export default function Home() {
         <div>
           <h1 className={h1({ theme })}>Vinícius Sorgetz</h1>
           <ContentParagraph
-            paragraphs={[
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            ]}
+            paragraph="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             className={paragraph()}
           ></ContentParagraph>
           <div className="flex justify-center gap-5">
@@ -93,11 +91,11 @@ export default function Home() {
         <div className=" flex flex-col items-center ">
           <ContentTitle className="mb-5">Linguagens</ContentTitle>
           <ContentParagraph
-            paragraphs={[
-              "Já trabalhei com algumas linguagens em minha carreira, mas de longe meu foco atualmente está no uso de TypeScript.",
-            ]}
+            paragraph={
+              "Já trabalhei com algumas linguagens em minha carreira, mas de longe meu foco atualmente está no uso de TypeScript."
+            }
             className={twMerge(paragraph(), "mb-5")}
-          ></ContentParagraph>
+          />
           <Link href="/">
             <button className={buttonOutline({ theme })}>Ver linguagens</button>
           </Link>
@@ -110,11 +108,11 @@ export default function Home() {
         <div className=" flex flex-col items-center ">
           <ContentTitle className="mb-5">Linguagens</ContentTitle>
           <ContentParagraph
-            paragraphs={[
-              "Já trabalhei com algumas linguagens em minha carreira, mas de longe meu foco atualmente está no uso de TypeScript.",
-            ]}
+            paragraph={
+              "Já trabalhei com algumas linguagens em minha carreira, mas de longe meu foco atualmente está no uso de TypeScript."
+            }
             className={twMerge(paragraph(), "mb-5")}
-          ></ContentParagraph>
+          />
           <Link href="/">
             <button className={buttonOutline({ theme })}>Ver linguagens</button>
           </Link>
