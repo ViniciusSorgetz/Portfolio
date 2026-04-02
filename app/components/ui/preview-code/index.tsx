@@ -6,18 +6,23 @@ import { twMerge } from "tailwind-merge";
 import { ContentParagraph } from "../content-paragraph";
 import { useHighlighter } from "@/app/hooks/use-highlighter";
 import { button, container, image } from "./variants";
-import { pre } from "motion/react-m";
 
-interface PreviewCodeProps {
-  preview:
-    | {
-        imgUrl: string;
-        className?: string;
-      }
-    | string;
+interface PreviewImage {
+  url: string;
+  alt: string;
+  width: number;
+  height: number;
+}
+
+interface PreviewText {
+  text: string;
+}
+
+type PreviewCodeProps = {
+  preview: PreviewText | PreviewImage;
   code: string;
   codeMode?: boolean;
-}
+};
 
 export function PreviewCode({ preview, code, codeMode }: PreviewCodeProps) {
   const [previewMode, setPreviewMode] = useState(!codeMode);
@@ -41,15 +46,15 @@ export function PreviewCode({ preview, code, codeMode }: PreviewCodeProps) {
       </div>
       <div className={container({ theme: "dark" })}>
         {previewMode ? (
-          typeof preview === "string" ? (
-            <ContentParagraph paragraph={preview}></ContentParagraph>
+          "text" in preview ? (
+            <ContentParagraph paragraph={preview.text}></ContentParagraph>
           ) : (
             <Image
-              src={preview.imgUrl}
-              alt={preview.imgUrl}
-              width={20}
-              height={20}
-              className={twMerge(image(), preview.className)}
+              src={preview.url}
+              alt={preview.alt}
+              width={preview.width}
+              height={preview.height}
+              unoptimized={true}
             />
           )
         ) : highlightedCode ? (
