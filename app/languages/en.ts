@@ -1,6 +1,5 @@
 import slugify from "slugify";
 import { Page } from "./language";
-import languagesSvg from "public/images/pictures/languages.svg";
 
 const portfolioPages: Page[] = [
   {
@@ -30,7 +29,7 @@ const portfolioPages: Page[] = [
                 value: {
                   code: '<img src="public/images/pictures/languages.svg"/>',
                   codeMode: false,
-                  previewImg: languagesSvg,
+                  previewImg: "languagesSvg",
                 },
               },
             ],

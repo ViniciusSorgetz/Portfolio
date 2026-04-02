@@ -1,7 +1,9 @@
 "use client";
 
-import React, { createContext, useState } from "react";
-import { Language } from "../languages";
+import React, { createContext, useContext, useState } from "react";
+import { LanguageContext } from "./language";
+import { Session } from "./navigation/pages";
+import { languageType } from "../utils/types/language";
 
 interface TocContextType {
   currentSession: string;
@@ -10,17 +12,19 @@ interface TocContextType {
   setSessions: React.Dispatch<React.SetStateAction<string[]>>;
   itemId: string;
   setItemId: React.Dispatch<React.SetStateAction<string>>;
-  updateSessions: (language: Language) => void;
+  updateSessions: (sessions: Session[]) => void;
+  updateSessionsLanguage: (language: languageType) => void;
 }
 
 export const TocContext = createContext<TocContextType>({
-  currentSession: "Session 1",
+  currentSession: "",
   setCurrentSession: () => {},
   sessions: [],
   setSessions: () => {},
   itemId: "",
   setItemId: () => {},
-  updateSessions: (en) => {},
+  updateSessions: () => {},
+  updateSessionsLanguage: () => {},
 });
 
 export function TocContextProvider({
@@ -28,22 +32,22 @@ export function TocContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [currentSession, setCurrentSession] = useState("Session 1");
-  const [sessions, setSessions] = useState([
-    "Session 1",
-    "Session 2",
-    "Session 3",
-    "Session 4",
-    "Session 5",
-  ]);
+  const [currentSession, setCurrentSession] = useState("");
+  const [rawSessions, setRawSessions] = useState<Session[]>([]);
+  const [sessions, setSessions] = useState<string[]>([]);
   const [itemId, setItemId] = useState("");
+  const { language } = useContext(LanguageContext);
 
-  function updateSessions(language: Language) {
-    const indexes = itemId.split("-");
-    const groupIndex = parseInt(indexes[0]);
-    const itemIndex = parseInt(indexes[1]);
-    const item = language.portfolioPages[groupIndex].items[itemIndex];
-    const mappedSessions = item.sessions.map((session) => session.title);
+  function updateSessions(sessions: Session[]) {
+    const mappedSessions = sessions.map((session) => session.title[language]);
+    setSessions(mappedSessions);
+    setRawSessions(sessions);
+  }
+
+  function updateSessionsLanguage(language: languageType) {
+    const mappedSessions = rawSessions.map(
+      (session) => session.title[language],
+    );
     setSessions(mappedSessions);
   }
 
@@ -57,6 +61,7 @@ export function TocContextProvider({
         itemId,
         setItemId,
         updateSessions,
+        updateSessionsLanguage,
       }}
     >
       {children}

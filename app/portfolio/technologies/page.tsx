@@ -1,17 +1,20 @@
 "use client";
 
-import { useContext } from "react";
-import { LanguageContext } from "@/app/contexts/language";
-import { RenderSessions } from "@/app/components/ui/render-sessions";
+import { ContentParagraph } from "@/app/components/ui/content-paragraph";
 import { ContentTitle } from "@/app/components/ui/content-title";
+import { useTranslation } from "@/app/hooks/use-translation";
 
 export default function TechnologiesPage() {
-  const { text } = useContext(LanguageContext);
+  const { gt } = useTranslation();
 
   return (
     <div>
-      <ContentTitle>{text.portfolioPages[0].items[1].title}</ContentTitle>
-      <RenderSessions sessions={text.portfolioPages[0].items[1].sessions} />
+      <ContentTitle>
+        {gt({ en: "Technologies", pt: "Tecnologias" })}
+      </ContentTitle>
+      <ContentParagraph
+        paragraph={gt({ en: "hello world!", pt: "olá mundo!" })}
+      />
     </div>
   );
 }

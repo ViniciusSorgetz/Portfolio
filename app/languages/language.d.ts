@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 type subtitle = {
   type: "subtitle";
   value: string;
@@ -19,7 +17,7 @@ type previewCode = {
     | {
         code: string;
         codeMode: boolean;
-        previewImg: StaticImageData;
+        previewImg: string;
       };
 };
 
