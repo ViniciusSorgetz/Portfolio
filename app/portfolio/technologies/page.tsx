@@ -10,8 +10,20 @@ export default function TechnologiesPage() {
 
   return (
     <div>
+<<<<<<< HEAD
       <ContentTitle>{text.portfolioPages[0].items[1].title}</ContentTitle>
       <RenderSessions sessions={text.portfolioPages[0].items[1].sessions} />
+=======
+      <ContentTitle>Titulo</ContentTitle>
+      <TrackedSession sessionId={0} title="Session 1" isFirst={true}>
+        <ContentParagraph
+          paragraphs={[
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+          ]}
+        />
+      </TrackedSession>
+>>>>>>> c086e2c61590d1e50b306f20e795bd14b28ce89f
     </div>
   );
 }

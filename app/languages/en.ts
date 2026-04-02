@@ -1,6 +1,9 @@
 import slugify from "slugify";
 import { Page } from "./language";
+<<<<<<< HEAD
 import languagesSvg from "public/images/pictures/languages.svg";
+=======
+>>>>>>> c086e2c61590d1e50b306f20e795bd14b28ce89f
 
 const portfolioPages: Page[] = [
   {
@@ -11,6 +14,7 @@ const portfolioPages: Page[] = [
         sessions: [],
       },
       {
+<<<<<<< HEAD
         title: "Technologies 🚀",
         sessions: [
           {
@@ -34,6 +38,13 @@ const portfolioPages: Page[] = [
                 },
               },
             ],
+=======
+        title: "Technologies",
+        sessions: [
+          {
+            title: "Languages",
+            rows: [],
+>>>>>>> c086e2c61590d1e50b306f20e795bd14b28ce89f
           },
           {
             title: "Backend",

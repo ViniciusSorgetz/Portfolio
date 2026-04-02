@@ -8,7 +8,12 @@ import { Sidebar } from "../sidebar";
 import { sidebarItem, sidebarLine, sidebarTitle } from "./variants";
 import { useActiveSidebarItem } from "@hooks/use-active-sidebar-item";
 import { TocContext } from "@/app/contexts/toc";
+<<<<<<< HEAD
 import { FinalItem, Item } from "@/app/languages/language";
+=======
+import { Item } from "@/app/languages/language";
+import { Replace } from "@/app/utils/replace";
+>>>>>>> c086e2c61590d1e50b306f20e795bd14b28ce89f
 
 export function SidebarLeft() {
   const { theme } = useContext(ThemeContext);
@@ -20,12 +25,20 @@ export function SidebarLeft() {
   const { setItemId } = useContext(TocContext);
   useEffect(() => {
     const sessions = activeItem?.item.sessions ?? [];
+<<<<<<< HEAD
     const mappedSessions = sessions.map((session) => session.title);
     setSessions(mappedSessions);
     setItemId(activeItem?.item.id ?? "");
   }, []);
 
   function changeItem(groupIndex: number, item: FinalItem) {
+=======
+    setSessions(sessions.map((s) => s.title));
+    setItemId(activeItem?.item.id ?? "");
+  }, []);
+
+  function changeItem(groupIndex: number, item: Replace<Item, { id: string }>) {
+>>>>>>> c086e2c61590d1e50b306f20e795bd14b28ce89f
     setActiveItem({ groupIndex, item });
     const mappedSessions = item.sessions.map((session) => session.title);
     setSessions(mappedSessions);
