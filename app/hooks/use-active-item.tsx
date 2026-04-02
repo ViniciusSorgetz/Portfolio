@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import slugify from "slugify";
-import { Item, pages } from "../contexts/navigation/pages";
+import { Item, pages } from "@/app/(pages)/portfolio/portfolio";
 import { useContext, useEffect, useState } from "react";
 import { TocContext } from "../contexts/toc";
 

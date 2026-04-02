@@ -2,8 +2,8 @@
 
 import React, { createContext, useContext, useState } from "react";
 import { LanguageContext } from "./language";
-import { Session } from "./navigation/pages";
 import { languageType } from "../utils/types/language";
+import { Session } from "@app/(pages)/portfolio/portfolio";
 
 interface TocContextType {
   currentSession: string;

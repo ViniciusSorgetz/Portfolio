@@ -6,7 +6,7 @@ import { ThemeContext } from "@contexts/theme";
 import Link from "next/link";
 import { Sidebar } from "../sidebar";
 import { sidebarItem, sidebarLine, sidebarTitle } from "./variants";
-import { Item, pages } from "@/app/contexts/navigation/pages";
+import { Item, pages } from "@/app/(pages)/portfolio/portfolio";
 import slugify from "slugify";
 import { TocContext } from "@/app/contexts/toc";
 import { useActiveItem } from "@/app/hooks/use-active-item";
